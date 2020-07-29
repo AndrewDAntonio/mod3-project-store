@@ -1,0 +1,231 @@
+/* css variables for theming */
+:root {
+  --main-bg-color: rgb(220, 220, 220);
+  --alt-bg-color: rgba(255, 255, 255, 0.954);
+  --main-font-color: rgb(0, 0, 0);
+  --alt-font-color: rgb(255, 255, 255);
+  --theme-primary: rgba(233,11,121,1);
+  --theme-primary-gradient: linear-gradient(90deg, rgba(233,11,121,1) 0%, rgba(242,106,88,1) 100%);
+  --box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+body.dark-mode {
+  --main-bg-color: rgb(50, 50, 50);
+  --alt-bg-color: rgb(0, 0, 0);
+  --main-font-color: rgb(200, 200, 200);
+  --alt-font-color: rgb(255, 255, 255);
+  --theme-primary: rgba(91,13,232,1);
+  --theme-primary-gradient: linear-gradient(90deg, rgba(91,13,232,1) 0%, rgba(121,101,220,1) 100%);
+}
+
+/* mini reset */
+* {
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+/* layout */
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--main-font-color);
+  font-size: 14px;
+  transition: all 0.5s;
+  background-color: var(--main-bg-color);
+}
+
+.container {
+  display: flex;
+  max-width: 90%;
+  margin: 2rem auto;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Raleway', sans-serif;
+}
+
+/* menu */
+#menu {
+  padding: 0.5rem;
+  color: var(--alt-font-color);
+  background: var(--theme-primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--box-shadow);
+}
+
+.toggle-switch {
+  margin: 0.5rem;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-switch label {
+  position: relative ;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: var(--alt-bg-color);
+  border-radius: 20px;
+}
+
+.toggle-switch label::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  line-height: 20px;
+  padding-left: 2px;
+  border-radius: 50%;
+  background-color: var(--main-font-color);
+  top: 1px;
+  left: 1px;
+  transition: all 0.3s;
+}
+
+.toggle-switch input:checked + label::after {
+  left: 20px; 
+}
+
+.toggle-switch input:checked + label {
+  background-color: var(--alt-bg-color);
+}
+
+/* sidebar */
+aside {
+  width: 33%;
+  min-width: 300px;
+  border-right: 1px solid #ccc;
+  padding: 0 1rem;
+}
+
+/* #cart */
+#cart {
+  background-color: var(--alt-bg-color);
+  box-shadow: var(--box-shadow);
+}
+
+#cart h2 {
+  background: var(--theme-primary);
+  color: var(--alt-font-color);
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+
+
+/* main */
+main {
+  padding: 0 1rem;
+}
+
+#items {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.itemCard{
+  flex: 0 1 calc(33% - 1.5em);
+  background-color: var(--alt-bg-color);
+  box-shadow: var(--box-shadow);
+  animation: enter 0.25s ease-out;
+  position: relative;
+  margin: 0 0.75em 2rem 0.75em;
+}
+
+@keyframes enter {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.itemCard.buttons {
+  position: absolute;
+  bottom: 0;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  visibility: hidden;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0rem 2rem;
+  background-color: rgba(220, 220, 220, 0.75);
+}
+
+.itemCard .info:hover ~ .buttons,
+.items .buttons:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+.itemCard .buttons .add {
+  cursor: pointer;
+  font-size: 2em;
+  width: 2em;
+  height: 2em;
+  border-radius: 50%;
+  position: relative;
+  top: -0.5em;
+}
+
+.itemCard .buttons .add:hover {
+  opacity: 1;
+}
+
+.itemCard .buttons .add:focus {
+  outline: none;
+}
+
+.itemCard .buttons .add.left {
+  background-color: #F05A69;
+}
+
+.itemCard .buttons .add {
+  background-color: #6CEC98;
+}
+
+.itemCard img {
+  width: 100%;
+}
+
+.itemCard .info {
+  padding: 0.5rem 1rem 1rem;
+  min-height: 8rem;
+}
+
+.itemCard .match {
+  color: red;
+}
+
+.itemCard .extra {
+  padding: 0.5em  1em;
+  min-height: 5em;
+}
+
+.itemCard h2 {
+  line-height: 2em;
+}
+.itemCard .name {
+  font-weight: 800;
+}
+
+@media (max-width: 899px) { 
+  .itemCard {
+    flex: 0 1 auto;
+    margin: 1em 0;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1200px) {
+  .itemCard {
+    flex: 0 1 calc(50% - 2em);
+    margin: 1em;
+  }
+}
